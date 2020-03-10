@@ -18,6 +18,7 @@ import java.io.IOException;
 public class TestContext {
     private WebDriverManager webDriverManager;
     private PageObjectManager pageObjectManager;
+    public ScenarioContext scenarioContext;
 
     public TestContext() throws IOException {
         webDriverManager = new WebDriverManager();
@@ -30,5 +31,9 @@ public class TestContext {
 
     public PageObjectManager getPageObjectManager() {
         return pageObjectManager;
+    }
+
+    public ScenarioContext getScenarioContext() {
+        return scenarioContext;
     }
 }

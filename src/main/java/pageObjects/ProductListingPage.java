@@ -49,4 +49,7 @@ public class ProductListingPage {
         selectElement(this.color).selectByVisibleText(color);
     }
 
+    public String getProductName(int productNumber){
+        return prdList.get(productNumber).findElement(By.cssSelector("h3")).getText();
+    }
 }

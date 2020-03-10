@@ -10,6 +10,7 @@ Feature: Automated End2End Tests
       And select same delivery address
       And select payment method as "check" payment
       And place the order
+     Then verify the order details
     Examples:
       | customer |
       | Lakshay  |

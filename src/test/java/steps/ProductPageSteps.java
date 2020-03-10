@@ -2,6 +2,7 @@ package steps;
 
 import cucumber.TestContext;
 import cucumber.api.java.en.And;
+import enums.Context;
 import managers.PageObjectManager;
 import pageObjects.ProductListingPage;
 
@@ -17,6 +18,8 @@ public class ProductPageSteps {
 
     @And("^choose to buy the first item$")
     public void chooseToBuyTheFirstItem() {
+        String productName = productListingPage.getProductName(0);
+        testContext.scenarioContext.setContext(Context.PRODUCT_NAME, productName);
         productListingPage.selectProduct(0);
         productListingPage.selectColor("White");
         productListingPage.selectSize("Medium");
