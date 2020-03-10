@@ -18,11 +18,12 @@ import java.io.IOException;
 public class TestContext {
     private WebDriverManager webDriverManager;
     private PageObjectManager pageObjectManager;
-    public ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     public TestContext() throws IOException {
         webDriverManager = new WebDriverManager();
         pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
+        scenarioContext = new ScenarioContext();
     }
 
     public WebDriverManager getWebDriverManager() {

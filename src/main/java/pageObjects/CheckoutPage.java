@@ -174,7 +174,7 @@ public class CheckoutPage {
         enterBillingCity(customer.address.city);
         enterBillingAddress1(customer.address.streetAddress);
         enterPostCode(customer.address.postCode);
-        selectCountry(customer.address.country);
-        selectCounty(customer.address.county);
+//        selectCountry(customer.address.country);
+//        selectCounty(customer.address.county);
     }
 }
