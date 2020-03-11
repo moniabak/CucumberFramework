@@ -18,8 +18,9 @@ public class WebDriverManager {
 
 
     public WebDriverManager() throws IOException {
-        driverType = FileReaderManager.getInstance().getConfigReader().getBrowser();
-        environmentType = FileReaderManager.getInstance().getConfigReader().getEnvironment();
+
+//        driverType = FileReaderManager.getInstance().getConfigReader().getBrowser();
+//        environmentType = FileReaderManager.getInstance().getConfigReader().getEnvironment();
     }
 
     public WebDriver getDriver() throws IOException {

@@ -45,7 +45,7 @@ public class FileReaderManager {
      * @throws IOException
      */
     public ConfigFileReader getConfigReader() throws IOException {
-        return (configFileReader == null) ? new ConfigFileReader() : configFileReader;
+        return (configFileReader == null) ? configFileReader = new ConfigFileReader() : configFileReader;
     }
 
     /**
@@ -53,6 +53,6 @@ public class FileReaderManager {
      * @throws IOException
      */
     public JsonDataReader getJsonReader() throws IOException {
-        return (jsonDataReader == null) ? new JsonDataReader() : jsonDataReader;
+        return (jsonDataReader == null) ? jsonDataReader = new JsonDataReader() : jsonDataReader;
     }
 }
