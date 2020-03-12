@@ -1,14 +1,10 @@
 package steps;
 
 import cucumber.TestContext;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.When;
 import managers.FileReaderManager;
 import pageObjects.CheckoutPage;
 import testDataTypes.Customer;
-
-import java.io.IOException;
 
 public class CheckoutPageSteps {
     TestContext testContext;

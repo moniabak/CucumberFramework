@@ -2,10 +2,7 @@ package steps;
 
 import cucumber.TestContext;
 import cucumber.api.java.en.And;
-import managers.PageObjectManager;
 import pageObjects.CartPage;
-
-import java.sql.Time;
 
 public class CartPageSteps {
     TestContext testContext;
