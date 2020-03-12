@@ -1,6 +1,5 @@
 package managers;
 
-import gherkin.lexer.Ca;
 import org.openqa.selenium.WebDriver;
 import pageObjects.*;
 
