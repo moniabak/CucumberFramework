@@ -47,7 +47,7 @@ public class WebDriverManager {
         throw new RuntimeException("RemoteWebDriver is not yest implemented");
     }
 
-    private WebDriver createLocalDriver() throws IOException {
+    private WebDriver createLocalDriver() {
         switch (driverType) {
             case FIREFOX:
                 driver = new FirefoxDriver();

@@ -3,16 +3,24 @@ package steps;
 import cucumber.TestContext;
 import cucumber.api.java.en.And;
 import enums.Context;
+import managers.PageObjectManager;
 import pageObjects.ProductListingPage;
 
 public class ProductPageSteps {
     TestContext testContext;
     ProductListingPage productListingPage;
+    PageObjectManager pageObjectManager;
 
-    public ProductPageSteps(TestContext testContext) {
+    public ProductPageSteps(PageObjectManager pageObjectManager, TestContext testContext) {
+        this.pageObjectManager = pageObjectManager;
+        productListingPage = this.pageObjectManager.getProductListingPage();
         this.testContext = testContext;
-        productListingPage = this.testContext.getPageObjectManager().getProductListingPage();
     }
+
+//    public ProductPageSteps(TestContext testContext) {
+//        this.testContext = testContext;
+//        productListingPage = this.testContext.getPageObjectManager().getProductListingPage();
+//    }
 
 
     @And("^choose to buy the first item$")

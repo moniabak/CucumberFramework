@@ -3,17 +3,24 @@ package steps;
 import cucumber.TestContext;
 import cucumber.api.java.en.And;
 import managers.FileReaderManager;
+import managers.PageObjectManager;
 import pageObjects.CheckoutPage;
 import testDataTypes.Customer;
 
 public class CheckoutPageSteps {
-    TestContext testContext;
+//    TestContext testContext;
     CheckoutPage checkoutPage;
+    PageObjectManager pageObjectManager;
 
-    public CheckoutPageSteps(TestContext testContext) {
-        this.testContext = testContext;
-        checkoutPage = this.testContext.getPageObjectManager().getCheckoutPage();
+    public CheckoutPageSteps(PageObjectManager pageObjectManager) {
+        this.pageObjectManager = pageObjectManager;
+        checkoutPage = this.pageObjectManager.getCheckoutPage();
     }
+
+    //    public CheckoutPageSteps(TestContext testContext) {
+//        this.testContext = testContext;
+//        checkoutPage = this.testContext.getPageObjectManager().getCheckoutPage();
+//    }
 
     @And("^enter \"([^\"]*)\" personal details on checkout page$")
     public void enterCustomerNamePersonalDetailsOnCheckoutPage(String customerName) throws Throwable {

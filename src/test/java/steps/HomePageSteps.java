@@ -1,20 +1,27 @@
 package steps;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import managers.PageObjectManager;
 import pageObjects.HomePage;
 
 import java.io.IOException;
 
 public class HomePageSteps {
     HomePage home;
-    TestContext testContext;
+    PageObjectManager pageObjectManager;
 
-    public HomePageSteps(TestContext testContext) throws IOException {
-        this.testContext = testContext;
-        home = this.testContext.getPageObjectManager().getHomePage();
+    public HomePageSteps(PageObjectManager pageObjectManager) throws IOException {
+        this.pageObjectManager = pageObjectManager;
+        home = this.pageObjectManager.getHomePage();
     }
+
+    //    TestContext testContext;
+//
+//    public HomePageSteps(TestContext testContext) throws IOException {
+//        this.testContext = testContext;
+//        home = this.testContext.getPageObjectManager().getHomePage();
+//    }
 
 
     @Given("^user is on Home Page$")

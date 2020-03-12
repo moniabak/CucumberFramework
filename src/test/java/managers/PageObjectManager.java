@@ -1,5 +1,6 @@
 package managers;
 
+import cucumber.TestContext;
 import org.openqa.selenium.WebDriver;
 import pageObjects.*;
 
@@ -13,8 +14,8 @@ public class PageObjectManager {
     private CheckoutPage checkoutPage;
     private ConfirmationPage confirmationPage;
 
-    public PageObjectManager(WebDriver driver) {
-        this.driver = driver;
+    public PageObjectManager(TestContext testContext) throws IOException {
+        this.driver = testContext.getWebDriverManager().getDriver();
     }
 
     public HomePage getHomePage() throws IOException {
@@ -36,6 +37,4 @@ public class PageObjectManager {
     public ConfirmationPage getConfirmationPage() {
         return (confirmationPage == null) ? confirmationPage = new ConfirmationPage(driver) : confirmationPage;
     }
-
-
 }

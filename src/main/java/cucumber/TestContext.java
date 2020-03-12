@@ -1,6 +1,6 @@
 package cucumber;
 
-import managers.PageObjectManager;
+//import managers.PageObjectManager;
 import managers.WebDriverManager;
 
 import java.io.IOException;
@@ -17,12 +17,12 @@ import java.io.IOException;
  */
 public class TestContext {
     private WebDriverManager webDriverManager;
-    private PageObjectManager pageObjectManager;
+//    private PageObjectManager pageObjectManager;
     private ScenarioContext scenarioContext;
 
-    public TestContext() throws IOException {
+    public TestContext() {
         webDriverManager = new WebDriverManager();
-        pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
+//        pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
         scenarioContext = new ScenarioContext();
     }
 
@@ -30,9 +30,9 @@ public class TestContext {
         return webDriverManager;
     }
 
-    public PageObjectManager getPageObjectManager() {
-        return pageObjectManager;
-    }
+//    public PageObjectManager getPageObjectManager() {
+//        return pageObjectManager;
+//    }
 
     public ScenarioContext getScenarioContext() {
         return scenarioContext;

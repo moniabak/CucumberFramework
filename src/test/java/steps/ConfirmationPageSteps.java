@@ -3,21 +3,28 @@ package steps;
 import cucumber.TestContext;
 import cucumber.api.java.en.Then;
 import enums.Context;
+import managers.PageObjectManager;
 import org.junit.Assert;
 import pageObjects.ConfirmationPage;
 
 public class ConfirmationPageSteps {
     TestContext testContext;
     ConfirmationPage confirmationPage;
+    PageObjectManager pageObjectManager;
 
-    public ConfirmationPageSteps(TestContext context){
-        testContext=context;
-        confirmationPage=testContext.getPageObjectManager().getConfirmationPage();
+    public ConfirmationPageSteps(PageObjectManager pageObjectManager) {
+        this.pageObjectManager = pageObjectManager;
+        confirmationPage = this.pageObjectManager.getConfirmationPage();
     }
 
+//    public ConfirmationPageSteps(TestContext context){
+//        testContext=context;
+//        confirmationPage=testContext.getPageObjectManager().getConfirmationPage();
+//    }
+
     @Then("^verify the order details$")
-    public void verifyTheOrderDetails(){
-        String productName=(String)testContext.getScenarioContext().getContext(Context.PRODUCT_NAME);
-        Assert.assertTrue(confirmationPage.getProductNames().stream().filter(x->x.contains(productName)).findFirst().get().length()>0);
+    public void verifyTheOrderDetails() {
+        String productName = (String) testContext.getScenarioContext().getContext(Context.PRODUCT_NAME);
+        Assert.assertTrue(confirmationPage.getProductNames().stream().filter(x -> x.contains(productName)).findFirst().get().length() > 0);
     }
 }
