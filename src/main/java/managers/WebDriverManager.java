@@ -1,5 +1,7 @@
 package managers;
 
+import dataProvider.Config;
+import dataProvider.ConfigFileReader;
 import enums.DriverType;
 import enums.EnvironmentType;
 import org.openqa.selenium.WebDriver;
@@ -11,16 +13,17 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
+    private final Config config;
     private WebDriver driver;
     private static DriverType driverType;
     private static EnvironmentType environmentType;
     private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
 
-    public WebDriverManager() throws IOException {
-
-//        driverType = FileReaderManager.getInstance().getConfigReader().getBrowser();
-//        environmentType = FileReaderManager.getInstance().getConfigReader().getEnvironment();
+    public WebDriverManager() {
+        config = ConfigFileReader.INST.getConfig();
+        driverType = config.getBrowser();
+        environmentType = config.getEnv();
     }
 
     public WebDriver getDriver() throws IOException {
@@ -50,20 +53,20 @@ public class WebDriverManager {
                 driver = new FirefoxDriver();
                 break;
             case CHROME:
-                System.setProperty(CHROME_DRIVER_PROPERTY, FileReaderManager.getInstance().getConfigReader().getDriverPath());
+                System.setProperty(CHROME_DRIVER_PROPERTY, config.getDriverPath());
                 driver = new ChromeDriver();
                 break;
             case IE:
                 driver = new InternetExplorerDriver();
                 break;
         }
-        if (FileReaderManager.getInstance().getConfigReader().getBrowserWindowSize())
+        if (config.isWindowsMaximize())
             driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait(), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(config.getImplicitWait(), TimeUnit.SECONDS);
         return driver;
     }
 
-    public void closeDriver(){
+    public void closeDriver() {
         driver.close();
         driver.quit();
     }

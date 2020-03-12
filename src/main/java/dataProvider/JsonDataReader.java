@@ -1,7 +1,6 @@
 package dataProvider;
 
 import com.google.gson.Gson;
-import managers.FileReaderManager;
 import testDataTypes.Customer;
 
 import java.io.BufferedReader;
@@ -12,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class JsonDataReader {
-    private final String customerFilePath = FileReaderManager.getInstance().getConfigReader().getTestDataResourcePath() + "Customer.json";
+    private final String customerFilePath = ConfigFileReader.INST.getConfig().getTestDataResourcePath() + "Customer.json";
     private List<Customer> customerList;
 
     public JsonDataReader() throws IOException {

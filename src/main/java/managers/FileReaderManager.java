@@ -44,9 +44,9 @@ public class FileReaderManager {
      * @return the instance of the ConfigFileReader
      * @throws IOException
      */
-    public ConfigFileReader getConfigReader() throws IOException {
-        return (configFileReader == null) ? configFileReader = new ConfigFileReader() : configFileReader;
-    }
+//    public ConfigFileReader getConfigReader() throws IOException {
+//        return (configFileReader == null) ? configFileReader = new ConfigFileReader() : configFileReader;
+//    }
 
     /**
      * @return instance of the JsonDataReader

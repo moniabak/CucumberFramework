@@ -67,10 +67,10 @@ enum ConfigProperties {
         @Override
         public boolean doRead(String prop, Config.Builder builder) {
             if (prop == null) {
-                builder.maximize(true);
+                builder.windowsMaximize(true);
             } else {
                 boolean propertyValue = Boolean.valueOf(prop);
-                builder.maximize(propertyValue);
+                builder.windowsMaximize(propertyValue);
             }
             return true;
         }
@@ -150,110 +150,3 @@ enum ConfigProperties {
     public abstract boolean doRead(String prop, Config.Builder builder);
 }
 
-class Config {
-
-    private final EnvironmentType env;
-    private final DriverType browser;
-    private final String driverPath;
-    private final String url;
-    private final String testDataResourcePath;
-    private final long implicitWait;
-    private final boolean maximize;
-
-    Config(EnvironmentType env, DriverType browser, String driverPath, String url, long implicitWait, boolean maximize, String testDataResurcePath) {
-        this.env = env;
-        this.browser = browser;
-        this.driverPath = driverPath;
-        this.url = url;
-        this.implicitWait = implicitWait;
-        this.maximize = maximize;
-        this.testDataResourcePath = testDataResurcePath;
-    }
-
-    public EnvironmentType getEnv() {
-        return env;
-    }
-
-    public DriverType getBrowser() {
-        return browser;
-    }
-
-    public String getDriverPath() {
-        return driverPath;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public String getTestDataResourcePath() {
-        return testDataResourcePath;
-    }
-
-    public long getImplicitWait() {
-        return implicitWait;
-    }
-
-    public boolean isMaximize() {
-        return maximize;
-    }
-
-    public static class Builder {
-
-        private EnvironmentType env;
-        private DriverType browser;
-        private String driverPath;
-        private String url;
-        private String testDataResourcePath;
-        private long implicitWait;
-        private boolean maximize;
-        private final Properties prop;
-
-        public Builder(Properties prop) {
-            this.prop = prop;
-        }
-
-        public Builder env(EnvironmentType env) {
-            this.env = env;
-            return this;
-        }
-
-        public Builder browser(DriverType browser) {
-            this.browser = browser;
-            return this;
-        }
-
-        public Builder driverPath(String driverPath) {
-            this.driverPath = driverPath;
-            return this;
-        }
-
-        public Builder url(String url) {
-            this.url = url;
-            return this;
-        }
-
-        public Builder testDataResourcePath(String testDataResourcePath) {
-            this.testDataResourcePath = testDataResourcePath;
-            return this;
-        }
-
-        public Builder implicitWait(long iwait) {
-            this.implicitWait = implicitWait;
-            return this;
-        }
-
-        public Builder maximize(boolean max) {
-            this.maximize = max;
-            return this;
-        }
-
-        public Config build() {
-            for (ConfigProperties value : ConfigProperties.values()) {
-                value.read(prop, this);
-            }
-            Config c = new Config(env, browser, driverPath, url, implicitWait, maximize, testDataResourcePath);
-            return c;
-        }
-    }
-}
