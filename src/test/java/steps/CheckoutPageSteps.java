@@ -17,7 +17,6 @@ public class CheckoutPageSteps {
 
     @And("^enter \"([^\"]*)\" personal details on checkout page$")
     public void enterCustomerNamePersonalDetailsOnCheckoutPage(String customerName) throws Throwable {
-//        Customer customer = FileReaderManager.getInstance().getJsonReader().getCustomerByName(customerName);
         Customer customer = new JsonDataReader().getCustomerByName(customerName);
         checkoutPage.fillPersonalDetails(customer);
     }

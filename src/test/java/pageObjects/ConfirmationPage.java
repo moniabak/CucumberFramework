@@ -19,13 +19,13 @@ public class ConfirmationPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindAll(@FindBy(how = How.CSS, using = ".order_item"))
+    @FindAll(@FindBy(how = How.CSS, using = ".shop_table.order_details"))
     private List<WebElement> prodList;
 
     public List<String> getProductNames(){
-        List<String>productNames = new ArrayList<>();
+        List<String> productNames = new ArrayList<>();
         for(WebElement element : prodList) {
-            productNames.add(element.findElement(By.cssSelector(".product-name")).getText());
+            productNames.add(element.findElement(By.cssSelector(".order_item .product-name")).getText());
         }
         return productNames;
     }

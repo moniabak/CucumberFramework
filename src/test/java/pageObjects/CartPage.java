@@ -6,8 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class CartPage {
+public class CartPage extends BasePage{
     public CartPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -18,6 +19,7 @@ public class CartPage {
     private WebElement btnContinueToCheckout;
 
     public void clickOnCart() {
+        waitForElementPresent(btnCart);
         btnCart.click();
     }
 

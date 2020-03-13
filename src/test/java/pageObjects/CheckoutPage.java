@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import testDataTypes.Customer;
 
-import java.util.List;
-
-public class CheckoutPage {
+public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver) {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
+
 
     @FindBy(how = How.ID, using = "billing_first_name")
     private WebElement txtbxFirstName;
@@ -30,8 +31,8 @@ public class CheckoutPage {
     @FindBy(how = How.ID, using = "billing_country")
     private WebElement dropCountryArrow;
 
-    @FindBy(how = How.CSS, using = "#select2-drop ul li")
-    private List<WebElement> countryList;
+    @FindBy(how = How.ID, using = "billing_state")
+    private WebElement dropCounty;
 
     @FindBy(how = How.ID, using = "billing_city")
     private WebElement txtbxBillingCity;
@@ -42,7 +43,7 @@ public class CheckoutPage {
     @FindBy(how = How.ID, using = "billing_postcode")
     private WebElement txtbxBillingPostCode;
 
-    @FindBy(how = How.CSS, using = "#terms")
+    @FindBy(how = How.ID, using = "terms")
     private WebElement chbxAcceptTermAndCondition;
 
     @FindBy(how = How.ID, using = "place_order")
@@ -50,11 +51,12 @@ public class CheckoutPage {
 
 
     public void enterName(String name) {
-        txtbxFirstName.sendKeys(name);
+        waitForElementPresent(txtbxFirstName);
+        sendKeys(txtbxFirstName,name);
     }
 
     public void enterLastName(String lastName) {
-        txtbxLastName.sendKeys(lastName);
+        sendKeys(txtbxLastName, lastName);
     }
 
     public void enterBillingEmail(String billingEmail) {
@@ -78,16 +80,15 @@ public class CheckoutPage {
     }
 
     public void selectCountry(String countryName) {
-        Select drpCountry = new Select(dropCountryArrow);
-        drpCountry.selectByVisibleText(countryName);
+        selectOptionByText(dropCountryArrow, countryName);
     }
 
-    public void checkTermAndCondition(boolean value) {
-        boolean isSelectedTerms = chbxAcceptTermAndCondition.isSelected();
-        if (value == isSelectedTerms) {
-        } else {
-            chbxAcceptTermAndCondition.click();
-        }
+    public void selectCounty(String countyName) {
+        selectOptionByText(dropCounty, countyName);
+    }
+
+    public void checkTermAndCondition(boolean state) {
+        check(chbxAcceptTermAndCondition, state);
     }
 
     public void clickOnPlaceOrder() {
@@ -103,5 +104,6 @@ public class CheckoutPage {
         enterBillingAddress1(customer.address.streetAddress);
         enterPostCode(customer.address.postCode);
         selectCountry(customer.address.country);
+        selectCounty(customer.address.county);
     }
 }

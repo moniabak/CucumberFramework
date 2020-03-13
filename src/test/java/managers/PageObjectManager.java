@@ -11,11 +11,16 @@ public class PageObjectManager {
     private ProductListingPage productListingPage;
     private CartPage cartPage;
     private HomePage homePage;
+    private BasePage basePage;
     private CheckoutPage checkoutPage;
     private ConfirmationPage confirmationPage;
 
     public PageObjectManager(TestContext testContext) throws IOException {
         this.driver = testContext.getWebDriverManager().getDriver();
+    }
+
+    public BasePage getBasePage() {
+        return (basePage == null) ? basePage = new BasePage(driver) : basePage;
     }
 
     public HomePage getHomePage() throws IOException {
