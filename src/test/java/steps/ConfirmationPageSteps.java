@@ -17,11 +17,6 @@ public class ConfirmationPageSteps {
         confirmationPage = this.pageObjectManager.getConfirmationPage();
     }
 
-//    public ConfirmationPageSteps(TestContext context){
-//        testContext=context;
-//        confirmationPage=testContext.getPageObjectManager().getConfirmationPage();
-//    }
-
     @Then("^verify the order details$")
     public void verifyTheOrderDetails() {
         String productName = (String) testContext.getScenarioContext().getContext(Context.PRODUCT_NAME);

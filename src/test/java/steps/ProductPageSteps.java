@@ -17,11 +17,6 @@ public class ProductPageSteps {
         this.testContext = testContext;
     }
 
-//    public ProductPageSteps(TestContext testContext) {
-//        this.testContext = testContext;
-//        productListingPage = this.testContext.getPageObjectManager().getProductListingPage();
-//    }
-
 
     @And("^choose to buy the first item$")
     public void chooseToBuyTheFirstItem() {

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import testDataTypes.Customer;
 
 import java.util.List;
@@ -26,11 +27,8 @@ public class CheckoutPage {
     @FindBy(how = How.ID, using = "billing_phone")
     private WebElement txtbxBillingPhone;
 
-    @FindBy(how = How.CSS, using = "#billing_country_field .select2-arrow")
+    @FindBy(how = How.ID, using = "billing_country")
     private WebElement dropCountryArrow;
-
-    @FindBy(how = How.CSS, using = "#billing_state_field .select2-arrow")
-    private WebElement dropCountyArrow;
 
     @FindBy(how = How.CSS, using = "#select2-drop ul li")
     private List<WebElement> countryList;
@@ -44,13 +42,7 @@ public class CheckoutPage {
     @FindBy(how = How.ID, using = "billing_postcode")
     private WebElement txtbxBillingPostCode;
 
-    @FindBy(how = How.ID, using = "ship-to-different-address-checkbox")
-    private WebElement chbxShipToDifferentAddress;
-
-    @FindBy(how = How.CSS, using = "ul.wc_payment_methods li")
-    private List<WebElement> paymentMethodList;
-
-    @FindBy(how = How.ID, using = "terms.input-checkbox")
+    @FindBy(how = How.CSS, using = "#terms")
     private WebElement chbxAcceptTermAndCondition;
 
     @FindBy(how = How.ID, using = "place_order")
@@ -85,86 +77,22 @@ public class CheckoutPage {
         txtbxBillingPostCode.sendKeys(billingPostCode);
     }
 
-    public void checkShipToDifferentAddress(boolean value) {
-        if (!value) chbxShipToDifferentAddress.click();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-        }
-    }
-
     public void selectCountry(String countryName) {
-        dropCountryArrow.click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        for (WebElement country : countryList) {
-            if (country.getText().equals(countryName)) {
-                country.click();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                }
-                break;
-            }
-        }
-    }
-
-    public void selectCounty(String countyName) {
-        dropCountyArrow.click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-        }
-
-        for (WebElement county : countryList) {
-            if (county.getText().equals(countyName)) {
-                county.click();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                }
-                break;
-            }
-        }
-    }
-
-    public void selectPaymentMethod(String paymentMethod) {
-        if ((paymentMethod.equals("CheckPayment"))) {
-            paymentMethodList.get(0).click();
-        } else if ((!paymentMethod.equals("Cash"))) {
-            paymentMethodList.get(1).click();
-        } else {
-            new Exception("Payment Method not recognised : " + paymentMethod);
-        }
-        try {
-            Thread.sleep(3000);
-        } catch (
-                InterruptedException ex) {
-        }
+        Select drpCountry = new Select(dropCountryArrow);
+        drpCountry.selectByVisibleText(countryName);
     }
 
     public void checkTermAndCondition(boolean value) {
-        if (value) chbxAcceptTermAndCondition.click();
+        boolean isSelectedTerms = chbxAcceptTermAndCondition.isSelected();
+        if (value == isSelectedTerms) {
+        } else {
+            chbxAcceptTermAndCondition.click();
+        }
     }
 
     public void clickOnPlaceOrder() {
         btnPlaceOrder.submit();
     }
-
-//    public void fillPersonalDetails() {
-//        enterName("Aotomation");
-//        enterLastName("Test");
-//        enterBillingPhone("00000000");
-//        enterBillingEmail("Automation@gmail.com");
-//        selectCountry("India");
-//        enterBillingCity("Delhi");
-//        enterBillingAddress1("Shalimar Bagh");
-//        enterPostCode("110088");
-//        selectCounty("Delhi");
-//    }
 
     public void fillPersonalDetails(Customer customer) {
         enterName(customer.firstName);
@@ -174,7 +102,6 @@ public class CheckoutPage {
         enterBillingCity(customer.address.city);
         enterBillingAddress1(customer.address.streetAddress);
         enterPostCode(customer.address.postCode);
-//        selectCountry(customer.address.country);
-//        selectCounty(customer.address.county);
+        selectCountry(customer.address.country);
     }
 }
