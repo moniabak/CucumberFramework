@@ -1,14 +1,13 @@
 package steps;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.And;
+import dataProvider.JsonDataReader;
 import managers.FileReaderManager;
 import managers.PageObjectManager;
 import pageObjects.CheckoutPage;
 import testDataTypes.Customer;
 
 public class CheckoutPageSteps {
-//    TestContext testContext;
     CheckoutPage checkoutPage;
     PageObjectManager pageObjectManager;
 
@@ -17,14 +16,10 @@ public class CheckoutPageSteps {
         checkoutPage = this.pageObjectManager.getCheckoutPage();
     }
 
-    //    public CheckoutPageSteps(TestContext testContext) {
-//        this.testContext = testContext;
-//        checkoutPage = this.testContext.getPageObjectManager().getCheckoutPage();
-//    }
-
     @And("^enter \"([^\"]*)\" personal details on checkout page$")
     public void enterCustomerNamePersonalDetailsOnCheckoutPage(String customerName) throws Throwable {
-        Customer customer = FileReaderManager.getInstance().getJsonReader().getCustomerByName(customerName);
+//        Customer customer = FileReaderManager.getInstance().getJsonReader().getCustomerByName(customerName);
+        Customer customer = new JsonDataReader().getCustomerByName(customerName);
         checkoutPage.fillPersonalDetails(customer);
     }
 

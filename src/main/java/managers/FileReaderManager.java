@@ -1,7 +1,7 @@
 package managers;
 
 import dataProvider.ConfigFileReader;
-import dataProvider.JsonDataReader;
+//import dataProvider.JsonDataReader;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class FileReaderManager {
      */
     private static FileReaderManager fileReaderManager = new FileReaderManager();
     private static ConfigFileReader configFileReader;
-    private static JsonDataReader jsonDataReader;
+//    private static JsonDataReader jsonDataReader;
 
     /**
      * Private constructor to restrict instantiation of the class from other classes.
@@ -38,21 +38,10 @@ public class FileReaderManager {
     }
 
     /**
-     * getConfigReader() method returns the instance of the ConfigFileReader but this method is not static.
-     * So that client has to use the getInstance() method to access other public methods of the FileReaderManager like FileReaderManager.getInstance().getConfigReader()
-     *
-     * @return the instance of the ConfigFileReader
-     * @throws IOException
-     */
-//    public ConfigFileReader getConfigReader() throws IOException {
-//        return (configFileReader == null) ? configFileReader = new ConfigFileReader() : configFileReader;
-//    }
-
-    /**
      * @return instance of the JsonDataReader
      * @throws IOException
      */
-    public JsonDataReader getJsonReader() throws IOException {
-        return (jsonDataReader == null) ? jsonDataReader = new JsonDataReader() : jsonDataReader;
-    }
+//    public JsonDataReader getJsonReader() throws IOException {
+//        return (jsonDataReader == null) ? jsonDataReader = new JsonDataReader() : jsonDataReader;
+//    }
 }

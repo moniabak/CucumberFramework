@@ -5,11 +5,7 @@ import dataProvider.ConfigFileReader;
 import enums.DriverType;
 import enums.EnvironmentType;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
@@ -26,12 +22,12 @@ public class WebDriverManager {
         environmentType = config.getEnv();
     }
 
-    public WebDriver getDriver() throws IOException {
+    public WebDriver getDriver() {
         if (driver == null) driver = createDriver();
         return driver;
     }
 
-    private WebDriver createDriver() throws IOException {
+    private WebDriver createDriver() {
         switch (environmentType) {
             case LOCAL:
                 driver = createLocalDriver();
@@ -48,18 +44,10 @@ public class WebDriverManager {
     }
 
     private WebDriver createLocalDriver() {
-        switch (driverType) {
-            case FIREFOX:
-                driver = new FirefoxDriver();
-                break;
-            case CHROME:
-                System.setProperty(CHROME_DRIVER_PROPERTY, config.getDriverPath());
-                driver = new ChromeDriver();
-                break;
-            case IE:
-                driver = new InternetExplorerDriver();
-                break;
+        if (driverType == DriverType.CHROME) {
+            System.setProperty(CHROME_DRIVER_PROPERTY, config.getDriverPath());
         }
+        driver = driverType.createWebDriver();
         if (config.isWindowsMaximize())
             driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(config.getImplicitWait(), TimeUnit.SECONDS);

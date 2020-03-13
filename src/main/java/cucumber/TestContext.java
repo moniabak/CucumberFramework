@@ -1,9 +1,6 @@
 package cucumber;
 
-//import managers.PageObjectManager;
 import managers.WebDriverManager;
-
-import java.io.IOException;
 
 /**
  * Be wise to create this class logically. Just think what all information your Steps file are using and put that information in to this class. In our case our steps file is just using the below information:
@@ -17,22 +14,16 @@ import java.io.IOException;
  */
 public class TestContext {
     private WebDriverManager webDriverManager;
-//    private PageObjectManager pageObjectManager;
     private ScenarioContext scenarioContext;
 
     public TestContext() {
         webDriverManager = new WebDriverManager();
-//        pageObjectManager = new PageObjectManager(webDriverManager.getDriver());
         scenarioContext = new ScenarioContext();
     }
 
     public WebDriverManager getWebDriverManager() {
         return webDriverManager;
     }
-
-//    public PageObjectManager getPageObjectManager() {
-//        return pageObjectManager;
-//    }
 
     public ScenarioContext getScenarioContext() {
         return scenarioContext;

@@ -14,7 +14,7 @@ public class JsonDataReader {
     private final String customerFilePath = ConfigFileReader.INST.getConfig().getTestDataResourcePath() + "Customer.json";
     private List<Customer> customerList;
 
-    public JsonDataReader() throws IOException {
+    public JsonDataReader() {
         customerList = getCustomerData();
     }
 
