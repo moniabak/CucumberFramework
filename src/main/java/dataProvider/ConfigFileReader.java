@@ -11,7 +11,8 @@ import java.util.Properties;
 public enum ConfigFileReader {
     INST;
 
-    private final String propertyFilePath = "configs//Configuration.properties";
+    private final String propertyFilePath = "src/main/resources/Configuration.properties";
+    private final String userFilePath = "configs/Config.properties";
     private final Config config;
 
     public Config getConfig() {
@@ -20,16 +21,18 @@ public enum ConfigFileReader {
 
     ConfigFileReader() {
         try {
-            Properties properties = loadConfig();
+            Properties properties = loadConfig(propertyFilePath);
+            Properties properties1 = loadConfig(userFilePath);
+            properties.putAll(properties1);
             Config.Builder builder = new Config.Builder(properties);
             config = builder.build();
         } catch (IOException e) {
-            throw new RuntimeException("Configuration.properties unable to read " + propertyFilePath);
+            throw new RuntimeException("Config.properties unable to read " + propertyFilePath);
         }
     }
 
-    private Properties loadConfig() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath))) {
+    private Properties loadConfig(String path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             Properties prop = new Properties();
             prop.load(reader);
             return prop;
