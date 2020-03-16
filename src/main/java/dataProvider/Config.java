@@ -15,14 +15,14 @@ public class Config {
     private final long implicitWait;
     private final boolean windowsMaximize;
 
-    private Config(EnvironmentType env, DriverType browser, String driverPath, String url, long implicitWait, boolean maximize, String testDataResurcePath) {
+    private Config(EnvironmentType env, DriverType browser, String driverPath, String url, long implicitWait, boolean maximize, String testDataResourcePath) {
         this.env = env;
         this.browser = browser;
         this.driverPath = driverPath;
         this.url = url;
         this.implicitWait = implicitWait;
         this.windowsMaximize = maximize;
-        this.testDataResourcePath = testDataResurcePath;
+        this.testDataResourcePath = testDataResourcePath;
     }
 
     public EnvironmentType getEnv() {

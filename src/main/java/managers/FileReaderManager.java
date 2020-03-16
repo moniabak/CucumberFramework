@@ -1,9 +1,6 @@
 package managers;
 
 import dataProvider.ConfigFileReader;
-//import dataProvider.JsonDataReader;
-
-import java.io.IOException;
 
 /**
  * File Reader Manager as Singleton Design Pattern
@@ -18,7 +15,6 @@ public class FileReaderManager {
      */
     private static FileReaderManager fileReaderManager = new FileReaderManager();
     private static ConfigFileReader configFileReader;
-//    private static JsonDataReader jsonDataReader;
 
     /**
      * Private constructor to restrict instantiation of the class from other classes.
@@ -37,11 +33,4 @@ public class FileReaderManager {
         return fileReaderManager;
     }
 
-    /**
-     * @return instance of the JsonDataReader
-     * @throws IOException
-     */
-//    public JsonDataReader getJsonReader() throws IOException {
-//        return (jsonDataReader == null) ? jsonDataReader = new JsonDataReader() : jsonDataReader;
-//    }
 }
