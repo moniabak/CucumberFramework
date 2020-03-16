@@ -4,7 +4,7 @@ import cucumber.TestContext;
 import cucumber.api.java.en.Then;
 import enums.Context;
 import managers.PageObjectManager;
-import org.junit.Assert;
+import org.testng.Assert;
 import pageObjects.ConfirmationPage;
 
 public class ConfirmationPageSteps {

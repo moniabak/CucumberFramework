@@ -16,14 +16,6 @@ public class HomePageSteps {
         home = this.pageObjectManager.getHomePage();
     }
 
-    //    TestContext testContext;
-//
-//    public HomePageSteps(TestContext testContext) throws IOException {
-//        this.testContext = testContext;
-//        home = this.testContext.getPageObjectManager().getHomePage();
-//    }
-
-
     @Given("^user is on Home Page$")
     public void userIsOnHomePage() throws IOException {
         home.navigateToHomePage();
