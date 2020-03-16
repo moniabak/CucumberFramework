@@ -55,9 +55,10 @@ public class BasePage {
         boolean isSelectedTerms = element.isSelected();
         if (state != isSelectedTerms) {
             try {
+                waitForElementEnable(element);
                 element.click();
             } catch (StaleElementReferenceException e) {
-                LOGGER.error("Element didnt check");
+                LOGGER.error("Element didn't check");
             }
         }
         LOGGER.info("Done.");
@@ -66,6 +67,12 @@ public class BasePage {
     public void waitForElementPresent(WebElement element) {
         LOGGER.info("Checking presence of element: " + element + ".");
         wait.until(ExpectedConditions.visibilityOf(element));
+        LOGGER.info("Done.");
+    }
+
+    public void waitForElementEnable(WebElement element) {
+        LOGGER.info("Checking presence of element: " + element + ".");
+        wait.until(ExpectedConditions.elementToBeClickable(element));
         LOGGER.info("Done.");
     }
 }

@@ -21,6 +21,6 @@ public class ConfirmationPageSteps {
     @Then("^verify the order details$")
     public void verifyTheOrderDetails() {
         String productName = (String) testContext.getScenarioContext().getContext(Context.PRODUCT_NAME);
-        Assert.assertTrue(confirmationPage.getProductNames().stream().filter(x -> x.contains(productName)).findFirst().get().length()>0);
+        Assert.assertTrue(confirmationPage.getProductNames().stream().filter(x -> x.toUpperCase().contains(productName)).findFirst().isPresent());
     }
 }

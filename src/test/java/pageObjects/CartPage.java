@@ -24,9 +24,10 @@ public class CartPage extends BasePage{
     }
 
     public void clickOnCountinueToCheckout(){
+        waitForElementPresent(btnContinueToCheckout);
         btnContinueToCheckout.click();
-        try {
-            Thread.sleep(5000);
-        }catch (InterruptedException e){}
+//        try {
+//            Thread.sleep(5000);
+//        }catch (InterruptedException e){}
     }
 }

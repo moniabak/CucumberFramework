@@ -1,12 +1,10 @@
 package pageObjects;
 
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import testDataTypes.Customer;
 
 public class CheckoutPage extends BasePage {
@@ -52,7 +50,7 @@ public class CheckoutPage extends BasePage {
 
     public void enterName(String name) {
         waitForElementPresent(txtbxFirstName);
-        sendKeys(txtbxFirstName,name);
+        sendKeys(txtbxFirstName, name);
     }
 
     public void enterLastName(String lastName) {
@@ -87,23 +85,23 @@ public class CheckoutPage extends BasePage {
         selectOptionByText(dropCounty, countyName);
     }
 
-    public void checkTermAndCondition(boolean state) {
-        check(chbxAcceptTermAndCondition, state);
+    public void checkTermAndCondition(boolean value) throws InterruptedException {
+        check(chbxAcceptTermAndCondition, value);
     }
 
-    public void clickOnPlaceOrder() {
+    public void clickOnPlaceOrder() throws InterruptedException {
         btnPlaceOrder.submit();
     }
 
     public void fillPersonalDetails(Customer customer) {
         enterName(customer.firstName);
         enterLastName(customer.lastName);
+        selectCountry(customer.address.country);
         enterBillingPhone(customer.phoneNumber.mob);
         enterBillingEmail(customer.emailAddress);
+        selectCounty(customer.address.county);
         enterBillingCity(customer.address.city);
         enterBillingAddress1(customer.address.streetAddress);
         enterPostCode(customer.address.postCode);
-        selectCountry(customer.address.country);
-        selectCounty(customer.address.county);
     }
 }

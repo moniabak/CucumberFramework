@@ -16,13 +16,13 @@ public class CheckoutPageSteps {
     }
 
     @And("^enter \"([^\"]*)\" personal details on checkout page$")
-    public void enterCustomerNamePersonalDetailsOnCheckoutPage(String customerName) throws Throwable {
+    public void enterCustomerNamePersonalDetailsOnCheckoutPage(String customerName) {
         Customer customer = new JsonDataReader().getCustomerByName(customerName);
         checkoutPage.fillPersonalDetails(customer);
     }
 
     @And("^place the order$")
-    public void placeTheOrder() {
+    public void placeTheOrder() throws InterruptedException {
         checkoutPage.checkTermAndCondition(true);
         checkoutPage.clickOnPlaceOrder();
     }
