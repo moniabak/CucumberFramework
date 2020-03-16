@@ -1,8 +1,7 @@
 package pageObjects;
 
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -39,8 +38,22 @@ public class BasePage {
 
     public void sendKeys(WebElement element, String string) {
         LOGGER.info("Send " + string + " into element: " + element + ".");
+        waitForElementPresent(element);
         element.sendKeys(string);
         LOGGER.info("Done.");
+    }
+
+    public String getText(WebElement element) {
+        LOGGER.info("Get text from element " + element);
+        String text = null;
+        try {
+            WebElement elem = wait.until(ExpectedConditions.visibilityOf(element));
+            text = elem.getText();
+        } catch (NoSuchElementException e) {
+            LOGGER.error("Element " + element + " is not visible ");
+        }
+        LOGGER.info("Done.");
+        return text;
     }
 
     public void selectOptionByText(WebElement element, String string) {

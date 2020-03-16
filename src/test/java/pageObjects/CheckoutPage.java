@@ -49,7 +49,6 @@ public class CheckoutPage extends BasePage {
 
 
     public void enterName(String name) {
-        waitForElementPresent(txtbxFirstName);
         sendKeys(txtbxFirstName, name);
     }
 
@@ -58,23 +57,23 @@ public class CheckoutPage extends BasePage {
     }
 
     public void enterBillingEmail(String billingEmail) {
-        txtbxBillingEmail.sendKeys(billingEmail);
+        sendKeys(txtbxBillingEmail, billingEmail);
     }
 
     public void enterBillingPhone(String billingPhone) {
-        txtbxBillingPhone.sendKeys(billingPhone);
+        sendKeys(txtbxBillingPhone, billingPhone);
     }
 
     public void enterBillingCity(String billingCity) {
-        txtbxBillingCity.sendKeys(billingCity);
+        sendKeys(txtbxBillingCity, billingCity);
     }
 
     public void enterBillingAddress1(String billingAddress1) {
-        txtbxBillingAddress1.sendKeys(billingAddress1);
+        sendKeys(txtbxBillingAddress1, billingAddress1);
     }
 
     public void enterPostCode(String billingPostCode) {
-        txtbxBillingPostCode.sendKeys(billingPostCode);
+        sendKeys(txtbxBillingPostCode, billingPostCode);
     }
 
     public void selectCountry(String countryName) {
@@ -85,11 +84,11 @@ public class CheckoutPage extends BasePage {
         selectOptionByText(dropCounty, countyName);
     }
 
-    public void checkTermAndCondition(boolean value) throws InterruptedException {
+    public void checkTermAndCondition(boolean value) {
         check(chbxAcceptTermAndCondition, value);
     }
 
-    public void clickOnPlaceOrder() throws InterruptedException {
+    public void clickOnPlaceOrder() {
         btnPlaceOrder.submit();
     }
 

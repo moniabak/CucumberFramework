@@ -1,0 +1,4 @@
+environment=local
+browser=chrome
+driverPath=src/test/resources/drivers/windows/chromedriver
+url=http://www.shop.demoqa.com
