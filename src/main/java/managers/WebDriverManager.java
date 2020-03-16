@@ -13,7 +13,6 @@ public class WebDriverManager {
     private WebDriver driver;
     private static DriverType driverType;
     private static EnvironmentType environmentType;
-    private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
 
     public WebDriverManager() {
@@ -44,9 +43,7 @@ public class WebDriverManager {
     }
 
     private WebDriver createLocalDriver() {
-        if (driverType == DriverType.CHROME) {
-            System.setProperty(CHROME_DRIVER_PROPERTY, config.getDriverPath());
-        }
+        System.setProperty(driverType.getKeyOfWebDriverForBrowser(), config.getDriverPath());
         driver = driverType.createWebDriver();
         if (config.isWindowsMaximize())
             driver.manage().window().maximize();

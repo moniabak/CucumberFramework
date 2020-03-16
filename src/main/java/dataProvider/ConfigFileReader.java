@@ -2,16 +2,19 @@ package dataProvider;
 
 import enums.DriverType;
 import enums.EnvironmentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
 public enum ConfigFileReader {
     INST;
-
-    private final String propertyFilePath = "src/main/resources/Configuration.properties";
+    public final Logger LOGGER = LoggerFactory.getLogger(ConfigFileReader.class);
+    private final String propertyFilePath = "src/main/resources/config/Configuration.properties";
     private final String userFilePath = "configs/Config.properties";
     private final Config config;
 
@@ -27,7 +30,7 @@ public enum ConfigFileReader {
             Config.Builder builder = new Config.Builder(properties);
             config = builder.build();
         } catch (IOException e) {
-            throw new RuntimeException("Config.properties unable to read " + propertyFilePath);
+            throw new RuntimeException("Configuration.properties unable to read " + propertyFilePath);
         }
     }
 
@@ -36,6 +39,9 @@ public enum ConfigFileReader {
             Properties prop = new Properties();
             prop.load(reader);
             return prop;
+        } catch (FileNotFoundException e) {
+            LOGGER.error("Configuration file has not been found. Path: {}",path , e);
+            throw e;
         }
     }
 }
