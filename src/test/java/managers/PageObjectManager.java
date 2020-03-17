@@ -15,7 +15,7 @@ public class PageObjectManager {
     private CheckoutPage checkoutPage;
     private ConfirmationPage confirmationPage;
 
-    public PageObjectManager(TestContext testContext) throws IOException {
+    public PageObjectManager(TestContext testContext) {
         this.driver = testContext.getWebDriverManager().getDriver();
     }
 

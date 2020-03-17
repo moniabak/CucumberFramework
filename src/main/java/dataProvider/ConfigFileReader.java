@@ -24,12 +24,14 @@ public enum ConfigFileReader {
 
     ConfigFileReader() {
         try {
+            LOGGER.info("Properties are reading form files.");
             Properties properties = loadConfig(propertyFilePath);
             Properties properties1 = loadConfig(userFilePath);
             properties.putAll(properties1);
             Config.Builder builder = new Config.Builder(properties);
             config = builder.build();
         } catch (IOException e) {
+            LOGGER.error("File doesn't exists");
             throw new RuntimeException("Configuration.properties unable to read " + propertyFilePath);
         }
     }
@@ -40,7 +42,7 @@ public enum ConfigFileReader {
             prop.load(reader);
             return prop;
         } catch (FileNotFoundException e) {
-            LOGGER.error("Configuration file has not been found. Path: {}",path , e);
+            LOGGER.error("Configuration file has not been found. Path: {}", path, e);
             throw e;
         }
     }
@@ -136,6 +138,7 @@ enum ConfigProperties {
 
     private final String propertyName;
     private final String defaultValue = "";
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     ConfigProperties(String propertyName) {
         this.propertyName = propertyName;
@@ -146,6 +149,7 @@ enum ConfigProperties {
     }
 
     public final boolean read(Properties prop, Config.Builder builder) {
+        LOGGER.trace("Reading property value from file {} by calling method with property {}",propertyName,prop.getProperty(propertyName));
         return doRead(prop.getProperty(propertyName), builder);
     }
 

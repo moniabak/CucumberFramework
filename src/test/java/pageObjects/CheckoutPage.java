@@ -49,6 +49,7 @@ public class CheckoutPage extends BasePage {
 
 
     public void enterName(String name) {
+        waitForElementPresent(txtbxFirstName);
         sendKeys(txtbxFirstName, name);
     }
 

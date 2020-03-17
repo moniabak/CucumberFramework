@@ -2,6 +2,8 @@ package dataProvider;
 
 import enums.DriverType;
 import enums.EnvironmentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -64,6 +66,8 @@ public class Config {
         private boolean windowsMaximize;
         private final Properties prop;
 
+        private static final Logger LOGGER = LoggerFactory.getLogger(Builder.class);
+
         public Builder(Properties prop) {
             this.prop = prop;
         }
@@ -104,10 +108,12 @@ public class Config {
         }
 
         public Config build() {
+            LOGGER.info("Building configuration.");
             for (ConfigProperties value : ConfigProperties.values()) {
                 value.read(prop, this);
             }
             Config c = new Config(env, browser, driverPath, url, implicitWait, windowsMaximize, testDataResourcePath);
+            LOGGER.info("Build is done.");
             return c;
         }
     }

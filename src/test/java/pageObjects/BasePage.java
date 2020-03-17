@@ -26,47 +26,41 @@ public class BasePage {
 
 
     public void clear(WebElement element) {
-        LOGGER.info("Clearing element: " + element + ".");
+        LOGGER.debug("Clearing element: {}.", element);
         element.clear();
-        LOGGER.info("Done.");
     }
 
     public void click(WebElement element) {
-        LOGGER.info("Clicking into element: " + element + ".");
+        LOGGER.debug("Clicking into element: {}.", element);
         waitForElementPresent(element);
         element.click();
-        LOGGER.info("Done.");
     }
 
     public void sendKeys(WebElement element, String string) {
-        LOGGER.info("Send " + string + " into element: " + element + ".");
-        waitForElementPresent(element);
+        LOGGER.debug("Send {} into element: {}.", string, element);
         element.sendKeys(string);
-        LOGGER.info("Done.");
     }
 
     public String getText(WebElement element) {
-        LOGGER.info("Get text from element " + element);
+        LOGGER.debug("Get text from element {}.", element);
         String text = null;
         try {
             WebElement elem = wait.until(ExpectedConditions.visibilityOf(element));
             text = elem.getText();
         } catch (NoSuchElementException e) {
-            LOGGER.error("Element " + element + " is not visible ");
+            LOGGER.error("Element {} is not visible ", element);
         }
-        LOGGER.info("Done.");
         return text;
     }
 
     public void selectOptionByText(WebElement element, String string) {
-        LOGGER.info("Select " + string + " into element: " + element + ".");
+        LOGGER.debug("Select {} into element: {}.", string, element);
         Select select = new Select(element);
         select.selectByVisibleText(string);
-        LOGGER.info("Done.");
     }
 
     public void check(WebElement element, boolean state) {
-        LOGGER.info("Checking if element is selected or not");
+        LOGGER.debug("Checking if element is selected or not");
         boolean isSelectedTerms = element.isSelected();
         if (state != isSelectedTerms) {
             try {
@@ -76,18 +70,15 @@ public class BasePage {
                 LOGGER.error("Element didn't check");
             }
         }
-        LOGGER.info("Done.");
     }
 
     public void waitForElementPresent(WebElement element) {
-        LOGGER.info("Checking presence of element: " + element + ".");
+        LOGGER.debug("Checking presence of element: {}.", element);
         wait.until(ExpectedConditions.visibilityOf(element));
-        LOGGER.info("Done.");
     }
 
     public void waitForElementEnable(WebElement element) {
-        LOGGER.info("Checking presence of element: " + element + ".");
+        LOGGER.debug("Checking presence of element: {}.", element);
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        LOGGER.info("Done.");
     }
 }
