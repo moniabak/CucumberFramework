@@ -1,8 +1,7 @@
 # Java + Selenium WebDriver + junit + Cucumber Framework
 This is framework based od tutorial https://www.toolsqa.com/selenium-cucumber-framework/ but with some changes I have made.
 This was created during the time I was learning Java.
-There is used Page Object Pattern with Page Factory.  
-It has been made in Page Object Pattern style including Page Factory. 
+There is used Page Object Pattern with Page Factory.
 In this framework there is exampled test with page objects, steps, resources, freatures and so on.
 
 ## Framework
@@ -88,3 +87,10 @@ To use data there is class JsonDataReader in the `src/test/java/dataProvider` wh
 To run the test there is TestRunner class in the `test/java/runners`.
 After test ends there is generated report in the `target/cucumber-report` folder.
 Report is generated as *json*, *xml* files and as *html* page.
+
+## Reporting
+To report tests results I used plugin pretty. There is configured json, html and xml report.
+Reports are generating in `target/cucumber-reports`.
+### Logging
+To make logs I used logback which is based on slf4j. Configure files are in `src/test/resources/` and `src/main/resources/config/`.
+Logs are going to `log` folder.   
