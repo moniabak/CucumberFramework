@@ -3,7 +3,6 @@ package steps;
 import cucumber.TestContext;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import helper.TestLogHelper;
 
 public class Hooks {
     TestContext testContext;

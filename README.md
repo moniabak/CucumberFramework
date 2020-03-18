@@ -2,7 +2,7 @@
 This is framework based od tutorial https://www.toolsqa.com/selenium-cucumber-framework/ but with some changes I have made.
 This was created during the time I was learning Java.
 There is used Page Object Pattern with Page Factory.
-In this framework there is exampled test with page objects, steps, resources, freatures and so on.
+In this framework there is exampled test with page objects, steps, resources, fmveatures and so on.
 
 ## Framework
 
@@ -23,11 +23,16 @@ pom.xml
 ```
 
 ### Configuration
-Driver location, home page for tests, location to json with data and so on can be set in the Configuration.properties file.
+Default configuration is in the Configuration.properties file.
+**Remember: *Configuration.properties* can't be deleted or changed!!**. 
+To customize configuration like change driver location, add home page for tests and so on, there 
+is needed to use file Config.properties (`configs` folder). This file you have to make from Config.properties.default.
+In Config.properties write just what you want to change. 
+This Config.properties file is required. If you don't create this file system throws an exception.
 This configuration is taken to start browser and run tests. 
-ConfigProperties enum, ConfigFileReader enum and Config class (with Builder class) are processing this configuration. 
-These files are in the `src/main/java/dataProvider` folder.
-DriverType enum `src/main/java/enums` delivers driver for browser from Configuration.properties.
+ConfigProperties enum, ConfigFileReader enum and Config class (with Builder class) are processing configuration from file. 
+These enums and class are in the `src/main/java/dataProvider` folder.
+DriverType enum `src/main/java/enums` delivers driver for browser set in the configuration file.
 
 
 ### Context
@@ -59,11 +64,12 @@ HomePage - inherits from BasePage class and gets configuration.
 
 ### Steps
 Steps are in the `src/test/java/steps` folder. Every file has name with sufix Steps like `NameSteps.java`.
-These files in the steps file there are exampled files. 
-In every step file there is PageObjectManager object to get.  
+These files in the `steps` folder are exampled files. 
+In every step file there is PageObjectManager object to get what is needed in the steps.  
+There is also junit file to do operations before and after tests. 
 
 ```
-Hooks - class just with @Before and @After.
+Hooks - class with @Before and @After, here can be set some configuration specific for tests.
 ```
 ### Features
 Test cases, scenarios are in the folder `src/test/resources/features`.
@@ -90,7 +96,9 @@ Report is generated as *json*, *xml* files and as *html* page.
 
 ## Reporting
 To report tests results I used plugin pretty. There is configured json, html and xml report.
-Reports are generating in `target/cucumber-reports`.
-### Logging
-To make logs I used logback which is based on slf4j. Configure files are in `src/test/resources/` and `src/main/resources/config/`.
-Logs are going to `log` folder.   
+Reports are generating to `target/cucumber-reports`.
+
+## Logging
+To make logs I used logback which is based on slf4j. Configure files `logback-test.xml` and `logback.xml` are in `src/test/resources/` and `src/main/resources/config/`.
+Logs are going to `log` folder as files `*.log`. To make good logs from test you have to use logger in the files in `src/test/`. 
+Log is generating every time you run tests. Configuration of this logger can be changed. 

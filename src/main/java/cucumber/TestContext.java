@@ -1,6 +1,5 @@
 package cucumber;
 
-import helper.TestLogHelper;
 import managers.WebDriverManager;
 
 /**
